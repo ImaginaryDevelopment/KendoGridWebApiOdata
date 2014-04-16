@@ -3,7 +3,7 @@
         type: "odata",
         transport: {
             read: {
-                url: "/api/Cats",
+                url: "/api/Cats?$expand=Mate&$select=*,Mate/Name",
                 dataType: "json"
             },
         },
@@ -18,7 +18,8 @@
                 fields: {
                     Id: { type: "number" },
                     Name: { type: "string" },
-                    Color: { type: "string" }
+                    Color: { type: "string" },
+                    Mate:{type:"object"}
                 }
             }
         },
@@ -36,7 +37,8 @@
         columns: [
             { field: "Id" },
             { field: "Name" },
-            { field: "Color" }
+            { field: "Color" },
+            {field:"Mate? Mate.Name:''",title:"Mate Name"}
         ]
     });
 });
